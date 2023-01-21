@@ -1,7 +1,7 @@
 # Logseq WeRead Importer
 
+一个用于将微信读书笔记导入到 Logseq 的插件 /
 A plugin for importing WeRead notes into Logseq
-一个用于将微信读书笔记导入到 Logseq 的插件
 
 > The WeRead parser from the [NotePal](https://github.com/djyde/notepal) project
 
