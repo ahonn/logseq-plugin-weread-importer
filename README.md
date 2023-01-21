@@ -2,6 +2,8 @@
 
 A plugin for importing WeRead notes into Logseq
 
+> The WeRead parser from the [NotePal](https://github.com/djyde/notepal) project
+
 ## How to Usage
 ![import weread notes](https://user-images.githubusercontent.com/9718515/213848696-58c9dac6-a9a0-481f-b851-c4f28c8c9f36.gif)
 
