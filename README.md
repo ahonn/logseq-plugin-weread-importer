@@ -14,3 +14,12 @@ You can customize which items export to Logseq and how they appear:
 - Page Properties
 - Highlight Header
 - Highlight Note
+
+## Contribution
+Issues and PRs are welcome!
+
+## Buy me a coffee
+If my plugin solve your situation and you will, you can choose to [buy me a coffee](https://www.buymeacoffee.com/yuexunjiang).
+
+## Licence
+MIT
