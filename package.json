@@ -1,6 +1,6 @@
 {
   "name": "logseq-plugin-weread-import",
-  "version": "1.14.1",
+  "version": "0.1.0",
   "main": "dist/index.html",
   "scripts": {
     "dev": "vite",
@@ -55,7 +55,7 @@
   },
   "logseq": {
     "id": "logseq-plugin-weread-importer",
-    "title": "Weread Importer",
+    "title": "WeRead Importer",
     "icon": "./logo.svg"
   }
 }
