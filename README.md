@@ -7,7 +7,10 @@ A plugin for importing WeRead notes into Logseq
 
 ## How to Usage
 
-![import weread notes](https://user-images.githubusercontent.com/9718515/213848696-58c9dac6-a9a0-481f-b851-c4f28c8c9f36.gif)
+![import weread notes](https://user-images.githubusercontent.com/9718515/216246672-e8387c51-3168-431c-9362-2aa54707ba9d.gif)
+
+- 在微信读书中导出笔记复制到剪贴板 / Export notes in WeRead to copy to clipboard
+- 点击插件按钮，粘贴后点击导入按钮 / Click the plugin button, paste and click the import button
 
 ## Plugin Settings
 
