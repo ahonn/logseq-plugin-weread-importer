@@ -1,4 +1,4 @@
-import { SettingSchemaDesc } from "@logseq/libs/dist/LSPlugin";
+import { SettingSchemaDesc } from '@logseq/libs/dist/LSPlugin';
 
 export interface ISettings {
   pageName: string;
@@ -22,7 +22,7 @@ const settings: SettingSchemaDesc[] = [
     description: 'Variables: {{title}}, {{author}}, {{date}}',
     default: {
       author: '[[{{author}}]]',
-      date: '[[{{date}}]]'
+      date: '[[{{date}}]]',
     },
   },
   {

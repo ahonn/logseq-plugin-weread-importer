@@ -2,8 +2,8 @@ export type Note = {
   bookName: string;
   author: string;
   children: {
-    bookName: string,
-    author: string,
+    bookName: string;
+    author: string;
     chapterName: string;
     highlight: string;
     sideNote: string;
@@ -11,20 +11,20 @@ export type Note = {
 };
 
 export function parseWxreadNotes(input: string) {
-  const lines = input.trim().split("\n");
+  const lines = input.trim().split('\n');
   let lineNumber = 0;
   const note = {
     children: [],
   } as unknown as Note;
 
-  let currentChapter = "";
+  let currentChapter = '';
   let inSideNote = false;
-  let sideNote = "";
+  let sideNote = '';
   let shouldIgnore = false;
   while (lineNumber < lines.length) {
     const line = lines[lineNumber];
     if (lineNumber === 0) {
-      note.bookName = line.replace("《", "").replace("》", "");
+      note.bookName = line.replace('《', '').replace('》', '');
       lineNumber++;
       continue;
     }
@@ -43,24 +43,24 @@ export function parseWxreadNotes(input: string) {
       continue;
     }
 
-    if (line.startsWith("◆")) {
-      const chapterName = line.replace("◆  ", "");
+    if (line.startsWith('◆')) {
+      const chapterName = line.replace('◆  ', '');
       currentChapter = chapterName;
       lineNumber++;
       continue;
     }
 
-    if (line.startsWith(">>")) {
+    if (line.startsWith('>>')) {
       if (inSideNote) {
         inSideNote = false;
         note.children.push({
           bookName: note.bookName,
           author: note.author,
           chapterName: currentChapter,
-          highlight: line.replace(/^>> /, ""),
+          highlight: line.replace(/^>> /, ''),
           sideNote: sideNote,
         });
-        sideNote = "";
+        sideNote = '';
         shouldIgnore = true;
         lineNumber++;
         continue;
@@ -70,8 +70,8 @@ export function parseWxreadNotes(input: string) {
           bookName: note.bookName,
           author: note.author,
           chapterName: currentChapter,
-          highlight: line.replace(/^>> /, ""),
-          sideNote: "",
+          highlight: line.replace(/^>> /, ''),
+          sideNote: '',
         });
       } else {
         shouldIgnore = false;
@@ -81,7 +81,7 @@ export function parseWxreadNotes(input: string) {
     }
 
     if (inSideNote) {
-      sideNote += "\n" + line;
+      sideNote += '\n' + line;
       lineNumber++;
       continue;
     }
