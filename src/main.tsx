@@ -11,11 +11,16 @@ import {
   createBookPage,
   insertChapterHighlight,
 } from './book';
+import '@blueprintjs/core/lib/css/blueprint.css';
 
 let app: IApp | null = null;
 
 function createModel() {
   return {
+    showImportDialog() {
+      logseq.showMainUI();
+    },
+
     async readClipboardContent() {
       logseq.showMainUI();
       const text = await window.navigator.clipboard.readText();
@@ -65,7 +70,7 @@ function main() {
     logseq.App.registerUIItem('toolbar', {
       key: plugin.id,
       template: `
-        <a id="${plugin.id}" data-on-click="readClipboardContent" data-rect class="button">
+        <a id="${plugin.id}" data-on-click="showImportDialog" data-rect class="button">
           <i class="ti ti-book" style="font-size: 20px"></i>
         </a>
       `,

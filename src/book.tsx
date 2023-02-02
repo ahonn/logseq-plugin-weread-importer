@@ -11,6 +11,14 @@ import { Note } from './parser';
 
 _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
 
+export async function getBookPage(bookName: string) {
+  const { pageName } = logseq.settings as unknown as ISettings;
+  const page = await logseq.Editor.getPage(
+    _.template(pageName)({ title: bookName }),
+  );
+  return page;
+}
+
 export async function createBookPage(bookName: string, author: string) {
   const { pageName, pageProperties } = logseq.settings as unknown as ISettings;
   const { preferredDateFormat } = await logseq.App.getUserConfigs();
