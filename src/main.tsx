@@ -1,61 +1,15 @@
 import '@logseq/libs';
 import React from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { groupBy } from 'lodash-es';
 import { logseq as plugin } from '../package.json';
-import { parseWxreadNotes } from './parser';
-import App, { IApp } from './app';
+import App from './app';
 import settings from './settings';
-import {
-  appendHighlightHeader,
-  createBookPage,
-  insertChapterHighlight,
-} from './book';
 import '@blueprintjs/core/lib/css/blueprint.css';
-
-let app: IApp | null = null;
 
 function createModel() {
   return {
     showImportDialog() {
       logseq.showMainUI();
-    },
-
-    async readClipboardContent() {
-      logseq.showMainUI();
-      const text = await window.navigator.clipboard.readText();
-      const notes = parseWxreadNotes(text);
-      const { bookName, author } = notes;
-
-      const exists = await logseq.Editor.getPage(bookName);
-      if (!exists && notes.children.length > 0) {
-        app!.setProgressMessage(`Creating Page: ${bookName}`);
-        const page = await createBookPage(bookName, author);
-
-        app!.setProgressMessage(`Importing Note from ${bookName}`);
-        const highlightHeader = await appendHighlightHeader(page!);
-
-        const chapterGroups = groupBy(notes.children, 'chapterName');
-        const chapterNames = Object.keys(chapterGroups);
-        for (let i = 0, len = chapterNames.length; i < len; i += 1) {
-          const chapterName = chapterNames[len - i - 1];
-          app!.setProgressMessage(
-            `Importing Note from ${bookName}, ${(((i + 1) / len) * 100).toFixed(
-              2,
-            )}%`,
-          );
-          await insertChapterHighlight(
-            highlightHeader!,
-            chapterName,
-            chapterGroups[chapterName],
-          );
-        }
-
-        await logseq.Editor.exitEditingMode();
-      }
-
-      app!.setProgressMessage('Import Successfully');
-      logseq.hideMainUI();
     },
   };
 }
@@ -77,11 +31,7 @@ function main() {
     });
 
     const root = ReactDOM.createRoot(document.getElementById('app')!);
-    root.render(
-      <React.StrictMode>
-        <App ref={(ref: IApp) => (app = ref)} />
-      </React.StrictMode>,
-    );
+    root.render(<App />);
   } catch (e: any) {
     logseq.App.showMsg(e.message, 'error');
   }
